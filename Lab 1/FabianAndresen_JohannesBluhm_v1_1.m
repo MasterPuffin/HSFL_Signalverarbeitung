@@ -19,8 +19,8 @@ td = 2;     % Signaldauer
 a = 2;      % Amplitude (Lautstärke)
 
 % Berechnung
-T = 1/fa;                             % Abtastperiode
-tVec = 0 : T : td;                   % Zeitvektor
+t = 1/fa           % Abtastperiode
+tVec = 0 : t : td; % Zeitvektor
 sinVec = a * sin(2 * pi * f * tVec); % Sinusformel
 
 % Aufgabe 2.2 Signal mit sound Befehl ausgeben
@@ -41,14 +41,14 @@ title('Komplette Sinus Ausgabe'); % Titel des Graphs
 % Aufgabe 2.4
 % Halbe Sekunde
 subplot(3, 1, 2) % Graphenanordnung
-plot(tVec(1:td*fa/4), sinVec(1:td*fa/4)); % Sinus wird erzeugt im Fenster
+plot(tVec(ceil(1:td*fa/4)), sinVec(ceil(1:td*fa/4))); % Sinus wird erzeugt im Fenster
 xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
 title('Eine halbe Sekunde'); % Titel des Graphs
 
 % Ein Sinuszyklus
 subplot(3, 1, 3) % Graphenanordnung
-plot(tVec(1:12), sinVec(1:12)); % Sinus wird erzeugt im Fenster
+plot(tVec(1:ceil(fa/f)), sinVec(1:ceil(fa/f))); % Sinus wird erzeugt im Fenster
 %plot(tVec(1:12), sinVec(1:12), '*'); % Einzelne Abtastungen werden angezeigt
 xlabel('Zeit in t/s'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
