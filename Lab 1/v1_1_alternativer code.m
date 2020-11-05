@@ -8,6 +8,10 @@
 %
 % Abgabe Donnerstag, 5.11.2020
 
+clc; % Kommandofenster bereinigen
+clear; % Variablen bereinigen
+close all; % Alles schließen
+
 % Parameter
 fa = 11025 % Abtastrate
 f = 1000   % Signalfrequenz
