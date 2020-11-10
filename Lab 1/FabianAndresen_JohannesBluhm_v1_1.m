@@ -1,12 +1,12 @@
 % Einführung in Matlab – Programmieren eines Sinussignals
 %
-% Fabian Andresen und Johannes Bluhm 02.11.2020
+% Fabian Andresen und Johannes Bluhm 11.11.2020
 %
 % MATLAB R2019b
 %
 % Dieses Programm generiert ein Sinussignal, grafisch und hörbar
 %
-% Abgabe Donnerstag, 5.11.2020
+% Abgabe Donnerstag, 12.11.2020
 
 clc;       % Kommandofenster bereinigen
 clear;     % Variablen bereinigen
@@ -19,8 +19,8 @@ td = 2;     % Signaldauer
 a = 2;      % Amplitude (Lautstärke)
 
 % Berechnung
-t = 1/fa           % Abtastperiode
-tVec = 0 : t : td; % Zeitvektor
+t = 1/fa;          % Abtastperiode
+tVec = 0 : t : td - 1; % Zeitvektor
 sinVec = a * sin(2 * pi * f * tVec); % Sinusformel
 
 % Aufgabe 2.2 Signal mit sound Befehl ausgeben
@@ -49,7 +49,6 @@ title('Eine halbe Sekunde'); % Titel des Graphs
 % Ein Sinuszyklus
 subplot(3, 1, 3) % Graphenanordnung
 plot(tVec(1:ceil(fa/f)), sinVec(1:ceil(fa/f))); % Sinus wird erzeugt im Fenster
-%plot(tVec(1:12), sinVec(1:12), '*'); % Einzelne Abtastungen werden angezeigt
 xlabel('Zeit in t/s'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
 title('Ein Sinuszyklus'); % Titel des Graphs
