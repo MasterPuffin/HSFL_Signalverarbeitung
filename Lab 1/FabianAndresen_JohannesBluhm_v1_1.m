@@ -20,7 +20,7 @@ a = 2;      % Amplitude (Lautstärke)
 
 % Berechnung
 t = 1/fa;          % Abtastperiode
-tVec = 0 : t : td; % Zeitvektor
+tVec = 0 : t : td-t; % Zeitvektor
 sinVec = a * sin(2 * pi * f * tVec); % Sinusformel
 
 % Aufgabe 2.2 Signal mit sound Befehl ausgeben
