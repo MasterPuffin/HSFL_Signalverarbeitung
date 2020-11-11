@@ -1,4 +1,3 @@
-
 function vec = func_fDarstellung(signalVec, fa, obereFreq) % Funktion wird definiert
     disp("Maximale obere Frequenz: " + fa/2);
     if(obereFreq > fa/2) % Wenn obere Frequenz größer ist als Abtastsrate durch 2
