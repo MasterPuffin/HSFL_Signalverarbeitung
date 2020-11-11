@@ -1,0 +1,10 @@
+function vec = func_fDarstellung(signalVec, fa, obereFreq)
+
+    if(obereFreq > fa/2)
+        obereFreq = fa/2
+        fprintf("Obere Frequenz zu groß!")
+    end
+    
+end
+
+% Keine Ahnung wie man die Funktion aufrufen soll
