@@ -5,6 +5,8 @@ function vec = func_fDarstellung(signalVec, fa, obereFreq)
         fprintf("Obere Frequenz zu groß!")
     end
     
+    % output fehlt
+    
 end
 
 % Keine Ahnung wie man die Funktion aufrufen soll
