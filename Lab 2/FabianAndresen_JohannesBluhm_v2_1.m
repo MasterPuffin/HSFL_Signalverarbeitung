@@ -10,30 +10,28 @@ clc;       % Kommandofenster bereinigen
 clear;     % Variablen bereinigen
 close all; % Alles schließen
 
+% Parameter
+fa = 11025; % Abtastrate
+f = 1000;   % Signalfrequenz
+td = 2;     % Signaldauer
+a = 2;      % Amplitude (Lautstärke)
 
-
+% Berechnung
+t = 1/fa;          % Abtastperiode
+tVec = 0 : t : td-t; % Zeitvektor
+sinVec = a * sin(2 * pi * f * tVec); % Sinusformel
 
 % Aufgabe 2.2 a
 % Obere Frequenz
-figure(1) % Fenster
 subplot(3, 1, 1) % Graphenanordnung
-plot(tVec, sinVec); % Sinus wird erzeugt im Fenster
-xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
-ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Komplette Sinus Ausgabe'); % Titel des Graphs
+func_fDarstellung(sinVec, fa, 3000); % Aufruf der Funktion
 
 % Aufgabe 2.2 b
 % kleine obere Frequenz
 subplot(3, 1, 2) % Graphenanordnung
-plot(tVec(ceil(1:td*fa/4)), sinVec(ceil(1:td*fa/4))); % Sinus wird erzeugt im Fenster
-xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
-ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Eine halbe Sekunde'); % Titel des Graphs
+func_fDarstellung(sinVec, fa, 25); % Aufruf der Funktion
 
 % Aufgabe 2.2 c
 % Große obere Frequenz
 subplot(3, 1, 3) % Graphenanordnung
-plot(tVec(1:ceil(fa/f)), sinVec(1:ceil(fa/f))); % Sinus wird erzeugt im Fenster
-xlabel('Zeit in t/s'); % x-Achse wird beschriftet
-ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Ein Sinuszyklus'); % Titel des Graphs
+func_fDarstellung(sinVec, fa, 10000); % Aufruf der Funktion
