@@ -1,12 +1,19 @@
 function vec = func_fDarstellung(signalVec, fa, obereFreq)
 
     if(obereFreq > fa/2)
+    
         obereFreq = fa/2
         fprintf("Obere Frequenz zu groß!")
+        
     end
     
-    % output fehlt
+    figure(2)
+    
+    % output fehlt noch
+    
+    xlabel('Frequenz in f/Hz');
+    title('Spektrum unseres Sinussignals');
     
 end
 
-% Keine Ahnung wie man die Funktion aufrufen soll
+% keine Ahnung wie und wo wir die Funktion genau aufrufen sollen
