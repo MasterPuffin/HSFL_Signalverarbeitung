@@ -27,7 +27,7 @@ sinVec = a * sin(2 * pi * f * tVec); % Sinusformel
 %sound (sinVec, 4000);
 disp(length(sinVec)/4000); %Länge des Sounds
 %sound (sinVec);
-disp(length(sinVec)/fa); %Länge des Sounds
+disp(length(sinVec)/8192); %Länge des Sounds
 %sound (sinVec, fa);
 disp(length(sinVec)/fa); %Länge des Sounds
 %sound (sinVec, 2 * fa);
