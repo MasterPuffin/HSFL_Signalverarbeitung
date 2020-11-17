@@ -9,8 +9,8 @@ function vec = func_fDarstellung(signalVec, fa, obereFreq) % Funktion wird defin
     
     figure(1) % Fenster
     specVec = abs(fft(signalVec, fa));  % Routine zur Spektraldarstellung
-    fVec = 0:obereFreq - 1;    % Neuer Vektor für Beschriftung der X-Achse
-    plot(fVec, specVec(1:obereFreq));    % Vektor ausgeben    
+    fVec = 0:obereFreq;    % Neuer Vektor für Beschriftung der X-Achse
+    plot(fVec, specVec(1:obereFreq+1));    % Vektor ausgeben    
     title("Obere Frequenz (" + obereFreq + "Hz)"); % Titel des Graphs
     xlabel('Frequenz (Hz)'); % x-Achse wird beschriftet
     ylabel('Amplitude'); % y-Achse wird beschriftet
