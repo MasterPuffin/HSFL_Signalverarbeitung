@@ -1,0 +1,36 @@
+% Einführung in Matlab – Programmieren eines Sinussignals
+%
+% Fabian Andresen und Johannes Bluhm 17.11.2020
+%
+% MATLAB R2019b
+%
+% Dieses Program gibt eine Melodie wieder
+%
+% Abgabe Donnerstag, 19.11.2020
+
+clc;       % Kommandofenster bereinigen
+clear;     % Variablen bereinigen
+close all; % Alles schließen
+
+% Parameter
+fa = 11025;   % Abtastrate
+f = 1000;     % Signalfrequenz
+td = 0.05;    % Signaldauer
+a = 2;        % Amplitude (Lautstärke)
+
+freqX = 800;  % Frequenz 1
+freqY = 1067; % Frequenz 2
+freqZ = 1333; % Frequenz 3
+
+% Berechnung
+t = 1/fa;              % Abtastperiode
+tVec = 0 : t : td - t; % Zeitvektor
+sinVecX = sin(2 * pi * freqX * tVec); % Sinus 1
+sinVecY = sin(2 * pi * freqY * tVec); % Sinus 2
+sinVecZ = sin(2 * pi * freqZ * tVec); % Sinus 3
+
+arr = [sinVecX, sinVecX, sinVecY, sinVecY, sinVecZ, sinVecZ]; % Melodie Array
+rep = repmat(arr,1,20); % Wiederholt Kopien eines Arrays
+
+sound(rep); % Sound
+disp(length(rep)/(2*fa)); % Länge vom Sound
