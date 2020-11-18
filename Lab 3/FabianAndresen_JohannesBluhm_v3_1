@@ -25,12 +25,40 @@ freqZ = 1333; % Frequenz 3
 % Berechnung
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
-sinVecX = sin(2 * pi * freqX * tVec); % Sinus 1
-sinVecY = sin(2 * pi * freqY * tVec); % Sinus 2
-sinVecZ = sin(2 * pi * freqZ * tVec); % Sinus 3
+sinVec1 = sin(2 * pi * freqX * tVec); % Sinus 1
+sinVec2 = sin(2 * pi * freqY * tVec); % Sinus 2
+sinVec3 = sin(2 * pi * freqZ * tVec); % Sinus 3
 
-arr = [sinVecX, sinVecX, sinVecY, sinVecY, sinVecZ, sinVecZ]; % Melodie Array
+arr = [sinVec1, sinVec1, sinVec2, sinVec2, sinVec3, sinVec3]; % Melodie Array
 rep = repmat(arr,1,20); % Wiederholt Kopien eines Arrays
+
+func_fDarstellung(rep, fa, 5000); % Ausgabe des Frequenzspektrums
+
+figure(2); % Zweites Fenster
+
+subplot(4, 1, 1);
+plot(tVec(1:31), sinVec1(1:31), '-r'); % Ausgabe
+xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
+ylabel('Amplitude'); % y-Achse wird beschriftet
+title('Erste Sinusausgabe'); % Titel des Graphs
+
+subplot(4, 1, 2);
+plot(tVec(1:31), sinVec2(1:31), '-g'); % Ausgabe
+xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
+ylabel('Amplitude'); % y-Achse wird beschriftet
+title('Zweite Sinusausgabe'); % Titel des Graphs
+
+subplot(4, 1, 3);
+plot(tVec(1:31), sinVec3(1:31), '-b'); % Ausgabe
+xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
+ylabel('Amplitude'); % y-Achse wird beschriftet
+title('Dritte Sinusausgabe'); % Titel des Graphs
+
+subplot(4, 1, 4);
+plot(tVec(1:31), sinVec1(1:31), '-r',tVec(1:31), sinVec2(1:31), '-g',tVec(1:31), sinVec3(1:31), '-b'); % Ausgabe
+xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
+ylabel('Amplitude'); % y-Achse wird beschriftet
+title('Alle Sinusausgaben'); % Titel des Graphs
 
 sound(rep); % Sound
 disp(length(rep)/(2*fa)); % Länge vom Sound
