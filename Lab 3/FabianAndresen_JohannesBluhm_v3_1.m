@@ -30,9 +30,9 @@ sinVec2 = sin(2 * pi * freq2 * tVec); % Sinus 2
 sinVec3 = sin(2 * pi * freq3 * tVec); % Sinus 3
 
 arr = [sinVec1, sinVec3, sinVec1, sinVec2, sinVec3, sinVec2]; % Melodie Array
-rep = repmat(arr,1,20); % Wiederholt Kopien eines Arrays
+rep = repmat(arr,1,10); % Wiederholt Kopien eines Arrays
 
-func_fDarstellung(rep, fa, 5000); % Ausgabe des Frequenzspektrums
+func_fDarstellung(rep, fa, 2000); % Ausgabe des Frequenzspektrums
 
 figure(2); % Zweites Fenster
 
