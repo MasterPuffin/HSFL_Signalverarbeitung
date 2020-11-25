@@ -1,12 +1,12 @@
 % Signalsynthese und Darstellung I - Dreitonfolge
 %
-% Fabian Andresen und Johannes Bluhm 17.11.2020
+% Fabian Andresen und Johannes Bluhm 24.11.2020
 %
 % MATLAB R2019b
 %
 % Dieses Program gibt eine Melodie wieder
 %
-% Abgabe Donnerstag, 19.11.2020
+% Abgabe Donnerstag, 26.11.2020
 
 clc;       % Kommandofenster bereinigen
 clear;     % Variablen bereinigen
