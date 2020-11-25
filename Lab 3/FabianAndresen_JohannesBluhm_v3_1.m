@@ -60,5 +60,5 @@ xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
 title('Alle Sinusausgaben'); % Titel des Graphs
 
-sound(rep); % Sound
-disp(length(rep)/(2*fa)); % Länge vom Sound
+sound(rep, fa); % Sound
+disp(length (rep/fa)); % Länge (Werte) vom gesamten Sound
