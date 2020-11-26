@@ -14,7 +14,7 @@ close all; % Alles schließen
 
 % Parameter
 fa = 11025;   % Abtastrate
-% Dauer inkorrekt
+%FIX: Dauer inkorrekt
 td = 0.90;    % Signaldauer
 a = 1;        % Amplitude (Lautstärke)
 
@@ -26,20 +26,20 @@ t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
 cosVec1 = a * cos(2 * pi * freq1 * tVec); % Sinus 1
 cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec); % Sinus 2
-% Funktioniert nicht
+% FIX: Funktioniert nicht
 pauseVec = zeros(length(tVec));
 
-%TODO Vektoren addieren
+%FIX: Vektoren addieren
 cosVec = cosVec1;
 
-%arr = [cosVec, pauseVec]; % Melodie Array
+%arr = [cosVec, pauseVec]; %  Ton - Pause abfolge
 %rep = repmat(arr,1,2000/180); % Wiederholt Kopien eines Arrays
 
-%sound(rep, fa); % Sound
+%sound(rep, fa); % Sound ausgeben
 
 %func_fDarstellung(rep, fa, 2000); % Ausgabe des Frequenzspektrums
 
-figure(1); % Zweites Fenster
+figure(1); % Neues Fenster
 
 subplot(2, 1, 1);
 plot(tVec(1:10), cosVec1(1:10), '-r'); % Ausgabe
