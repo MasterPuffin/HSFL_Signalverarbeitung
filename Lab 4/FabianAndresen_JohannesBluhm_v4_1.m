@@ -24,8 +24,8 @@ freq2 = 1209; % Frequenz 2
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
 tVec2 = 0 : 1 / fa : 2;    % Zeitvektor 2 für letzte Ausgabe
-cosVec1 = a * cos(2 * pi * freq1 * tVec); % Sinus 1
-cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec); % Sinus 2
+cosVec1 = a * cos(2 * pi * freq1 * tVec + 7.85); % Sinus 1
+cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec + 7.85); % Sinus 2
 
 pauseVec = zeros(1 , length(tVec)); % Pausenvektor
 cosVec = cosVec1 + cosVec2; % Vektoren addieren
@@ -41,7 +41,7 @@ func_fDarstellung(rep, fa, 2000); % Ausgabe des Frequenzspektrums
 figure(2); % Neues Fenster
 
 subplot(2, 1, 1);
-plot(tVec(1:10), cosVec(1:10), '-r'); % Ausgabe
+plot(tVec(1:110), cosVec(1:110), '-r'); % Ausgabe
 xlabel('Zeit in ms'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
 
