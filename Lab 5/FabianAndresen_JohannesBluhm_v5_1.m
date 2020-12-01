@@ -17,9 +17,8 @@ fa = 11025;   % Abtastrate
 td = 0.5;    % Signaldauer
 a = 1;        % Amplitude (Lautstärke)
 
-% Berechnung
-t = 1/fa;              % Abtastperiode
-tVec = 0 : t : td - t; % Zeitvektor
+% Deklarieren von weiteren Variablen
+ersterVec = 0; % wird in der for-schleife bearbeitet
 
 % Tonleiter
 c = 261.6;
@@ -34,6 +33,15 @@ as = nthroot(2, 12) ^ 8 * c;
 a = nthroot(2, 12) ^ 9 * c;
 ais = nthroot(2, 12) ^ 10 * c;
 h = nthroot(2, 12) ^ 11 * c;
+p = 0; % pause
 
-% Pausefreq
-pause = 0;
+tonleiter = [c, cis, d, dis, e, f, fis, g, as, a, ais, h];
+lengthTonleiter = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+for x = 1 : length(lengthTonleiter)
+    tonleiterVec = funcGeneratePeriodic(1, a, tonleiter(x), 0, td * length(x), fa, 0);
+    ersterVec = [ersterVec, tonleiterVec];
+end
+
+% Soundtest Tonleiter ohne PiecewiseLin function
+% sound(ersterVec, fa);
