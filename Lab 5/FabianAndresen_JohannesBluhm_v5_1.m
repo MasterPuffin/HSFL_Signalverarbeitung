@@ -36,9 +36,8 @@ h = nthroot(2, 12) ^ 11 * c;
 p = 0; % pause
 
 tonleiter = [c, cis, d, dis, e, f, fis, g, as, a, ais, h];
-lengthTonleiter = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
-for x = 1 : length(lengthTonleiter)
+for x = 1 : length(tonleiter)
     tonleiterVec = funcGeneratePeriodic(1, a, tonleiter(x), 0, td * length(x), fa, 0);
     ersterVec = [ersterVec, tonleiterVec];
 end
