@@ -13,12 +13,16 @@ clear;     % Variablen bereinigen
 close all; % Alles schließen
 
 % Parameter
-fa = 11025;   % Abtastrate
+fa = 11025;  % Abtastrate
 td = 0.5;    % Signaldauer
-a = 1;        % Amplitude (Lautstärke)
+amp = 1;     % Amplitude (Lautstärke)
 
 % Deklarieren von weiteren Variablen
-ersterVec = 0; % wird in der for-schleife bearbeitet
+ersterVec = 0; % funcGeneratePeriodic matrix
+zweiterVec = 0; % funcGeneratePiecewiseLin matrix
+tonleiterVec = 0;
+tonleiterVec2 = 0;
+bearbeiteterTon = 0;
 
 % Tonleiter
 c = 261.6;
@@ -37,10 +41,23 @@ p = 0; % pause
 
 tonleiter = [c, cis, d, dis, e, f, fis, g, as, a, ais, h];
 
+% für tonleiterVec2 (funcGeneratePiecewiseLin)
+relTVec = [0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1]; % Zum bearbeiten der Zeit (11 Werte momentan)
+AmpVec = [0 0.05 0.1 0.15 0.2 0.25 0.2 0.15 0.1 0.05 0]; % Zum bearbeiten der Amplitude in der Zeit
+
 for x = 1 : length(tonleiter)
-    tonleiterVec = funcGeneratePeriodic(1, a, tonleiter(x), 0, td * length(x), fa, 0);
+
+    tonleiterVec = funcGeneratePeriodic(1, amp, tonleiter(x), 0, td * length(x), fa, 0);
     ersterVec = [ersterVec, tonleiterVec];
+    
+    tonleiterVec2 = funcGeneratePiecewiseLin(relTVec, AmpVec, length(tonleiter(x)));
+    bearbeiteterTon = tonleiterVec * tonleiterVec2;
+    zweiterVec = [zweiterVec, bearbeiteterTon];
+    
 end
 
 % Soundtest Tonleiter ohne PiecewiseLin function
-% sound(ersterVec, fa);
+%sound(ersterVec, fa);
+
+% Soundtest Tonleiter mit PiecewiseLin function
+%sound(zweiterVec, fa);
