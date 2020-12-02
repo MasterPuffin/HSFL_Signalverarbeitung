@@ -23,7 +23,6 @@ freq2 = 1209; % Frequenz 2
 % Berechnung
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
-tVec2 = 0 : 1 / fa : 2;    % Zeitvektor 2 für letzte Ausgabe
 cosVec1 = a * cos(2 * pi * freq1 * tVec + 7.85); % Sinus 1
 cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec + 7.85); % Sinus 2
 
@@ -33,6 +32,8 @@ cosVec = cosVec1 + cosVec2; % Vektoren addieren
 numb = 11; % Wie oft es wiederholt werden muss
 arr = [cosVec, pauseVec]; % Ton - Pause abfolge
 rep = repmat(arr, 1, numb); % Wiederholt Kopien eines Arrays
+
+tVec2 = 0 : 1 / fa : length(rep);    % Zeitvektor 2 für letzte Ausgabe
 
 sound(rep, fa); % Sound ausgeben
 
