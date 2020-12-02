@@ -61,3 +61,10 @@ end
 
 % Soundtest Tonleiter mit PiecewiseLin function
 %sound(zweiterVec, fa);
+
+% Gibt die Zeit und Amplitude des veränderten Tons wieder
+figure(1)
+subplot(1, 1, 1);
+plot(relTVec, AmpVec);
+xlabel('Zeit');
+ylabel('Amp');
