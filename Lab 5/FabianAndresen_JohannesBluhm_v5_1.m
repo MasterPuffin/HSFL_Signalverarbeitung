@@ -17,6 +17,9 @@ fa = 11025;  % Abtastrate
 td = 0.5;    % Signaldauer
 amp = 1;     % Amplitude (Lautstärke)
 
+t = 1/fa;              % Abtastperiode
+tVec = 0 : t : td - t; % Zeitvektor
+
 % Deklarieren von weiteren Variablen
 ersterVec = 0; % funcGeneratePeriodic matrix
 zweiterVec = 0; % funcGeneratePiecewiseLin matrix
@@ -68,3 +71,26 @@ subplot(1, 1, 1);
 plot(relTVec, AmpVec);
 xlabel('Zeit');
 ylabel('Amp');
+title('Bearbeitungskurve'); % Titel des Graphs
+
+% Graph unbearbeiteter Ton
+figure(2)
+subplot(3, 1, 1);
+plot(tVec(1:1500), ersterVec(1, 1:1500));
+xlabel('Zeit');
+ylabel('Amp');
+title('Unbearbeiteter Ton Auszug'); % Titel des Graphs
+
+% Graph bearbeiteter Ton
+subplot(3, 1, 2);
+plot(tVec(1:1500), zweiterVec(1, 1:1500));
+xlabel('Zeit');
+ylabel('Amp');
+title('Bearbeiteter Ton Auszug'); % Titel des Graphs
+
+% Graph bearbeiteter Ton vollständig
+subplot(3, 1, 3);
+plot((1:length(zweiterVec)), zweiterVec(1, 1:length(zweiterVec)));
+xlabel('Zeit');
+ylabel('Amp');
+title('Bearbeiteter Ton'); % Titel des Graphs
