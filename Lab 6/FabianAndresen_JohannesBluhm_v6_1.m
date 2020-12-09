@@ -70,7 +70,7 @@ for x = 1 : length(odenVec)
 end
 
 % Ode Melodie
-sound(ersterVec, fa);
+% sound(ersterVec, fa);
 
 % Ode Melodie mit funcGeneratePiecewiseLin (noch nicht implementiert)
 %sound(zweiterVec, fa);
@@ -79,22 +79,22 @@ subplot(2, 2, 1);
 func_fDarstellung(note1, fa, oFreq); % Ausgabe des Frequenzspektrums
 xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Note 1 (e)');
+title(append('Note 1 (e) Frequenz ', num2str(e)));
 
 subplot(2, 2, 2);
 func_fDarstellung(note2, fa, oFreq); % Ausgabe des Frequenzspektrums
 xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Note 2 (e)');
+title(append('Note 2 (e) Frequenz ', num2str(e)));
 
 subplot(2, 2, 3);
 func_fDarstellung(note3, fa, oFreq); % Ausgabe des Frequenzspektrums
 xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Note 3 (f)');
+title(append('Note 3 (f) Frequenz ', num2str(f)));
 
 subplot(2, 2, 4);
 func_fDarstellung(note4, fa, oFreq); % Ausgabe des Frequenzspektrums
 xlabel('Zeit in Sekunden'); % x-Achse wird beschriftet
 ylabel('Amplitude'); % y-Achse wird beschriftet
-title('Note 4 (g)');
+title(append('Note 4 (g) Frequenz ', num2str(g)));
