@@ -22,8 +22,6 @@ oFreq = 500;   % Obere Frequenz
 ersterVec = 0; % funcGeneratePeriodic matrix
 zweiterVec = 0; % funcGeneratePiecewiseLin matrix
 tonleiterVec = 0;
-%tonleiterVec2 = 0;
-%bearbeiteterTon = 0;
 
 % Tonleiter
 c = 261.6;
@@ -41,10 +39,6 @@ h = nthroot(2, 12) ^ 11 * c;
 p = 0; % pause
 
 odenVec = [e, e, f, g, g, f, e, d, c, c, d, e, e, d, d, e, e, f, g, g];
-
-% für tonleiterVec2 (funcGeneratePiecewiseLin)
-%odenTVec = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
-%odenAmpVec = [0 0.05 0.10 0.15 0.20 0.25 0.30 0.35 0.40 0.45 0.50 0.40 0.35 0.30 0.25 0.20 0.15 0.10 0.05 0];
 
 for x = 1 : length(odenVec)
 
@@ -70,10 +64,7 @@ for x = 1 : length(odenVec)
 end
 
 % Ode Melodie
-% sound(ersterVec, fa);
-
-% Ode Melodie mit funcGeneratePiecewiseLin (noch nicht implementiert)
-%sound(zweiterVec, fa);
+sound(ersterVec, fa);
 
 subplot(2, 2, 1);
 func_fDarstellung(note1, fa, oFreq); % Ausgabe des Frequenzspektrums
