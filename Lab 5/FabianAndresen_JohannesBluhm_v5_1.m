@@ -50,11 +50,11 @@ AmpVec = [0 0.05 0.1 0.15 0.2 0.25 0.2 0.15 0.1 0.05 0]; % Zum bearbeiten der Am
 
 for x = 1 : length(tonleiter)
 
-    tonleiterVec = funcGeneratePeriodic(1, amp, tonleiter(x), 0, td * length(x), fa, 0);
+    tonleiterVec = funcGeneratePeriodic(1, amp, tonleiter(x), 0, length(x), fa, 0);
     ersterVec = [ersterVec, tonleiterVec];
     
-    tonleiterVec2 = funcGeneratePiecewiseLin(relTVec, AmpVec, length(tonleiter(x)));
-    bearbeiteterTon = tonleiterVec * tonleiterVec2;
+    tonleiterVec2 = funcGeneratePiecewiseLin(relTVec, AmpVec, length(tonleiterVec));
+    bearbeiteterTon = tonleiterVec .* tonleiterVec2;
     zweiterVec = [zweiterVec, bearbeiteterTon];
     
 end
@@ -90,7 +90,7 @@ title('Bearbeiteter Ton Auszug'); % Titel des Graphs
 
 % Graph bearbeiteter Ton vollständig
 subplot(3, 1, 3);
-plot((1:length(zweiterVec)), zweiterVec(1, 1:length(zweiterVec)));
-xlabel('Zeit');
+plot((1:length(bearbeiteterTon)), bearbeiteterTon(1, 1:length(bearbeiteterTon)));
+xlabel('Abtastwerte');
 ylabel('Amp');
 title('Bearbeiteter Ton'); % Titel des Graphs
