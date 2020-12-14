@@ -22,15 +22,19 @@ freq = 1000;  % Frequenz
 % um sie hören zu können. Einfach auf Run drücken und die Fehlermeldung
 % lesen, dann genanntes in Matlab installieren.
 
-cos = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0);
-rechteck = funcGeneratePeriodic(4, amp, freq, 0, td, fa, 0);
-dreieck = funcGeneratePeriodic(3, amp, freq, 0, td, fa, 0);
-saegezahn = funcGeneratePeriodic(2, amp, freq, 0, td, fa, 0);
+cosVec = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0);
+rechteckVec = funcGeneratePeriodic(4, amp, freq, 0, td, fa, 0);
+dreieckVec = funcGeneratePeriodic(3, amp, freq, 0, td, fa, 0);
+saegezahnVec = funcGeneratePeriodic(2, amp, freq, 0, td, fa, 0);
 
 rauschen = randn(fa,td); % Erzeugt ein Rauschen
 
-%sound(cos, fa);
-%sound(rechteck, fa);
-%sound(dreieck, fa);
-%sound(saegezahn, fa);
+%sound(cosVec, fa);
+%sound(rechteckVec, fa);
+%sound(dreieckVec, fa);
+%sound(saegezahnVec, fa);
 %sound(rauschen, fa);
+
+% Pause fehlt
+signaleVec = [cosVec, rechteckVec, dreieckVec, saegezahnVec];
+%sound(signaleVec, fa);
