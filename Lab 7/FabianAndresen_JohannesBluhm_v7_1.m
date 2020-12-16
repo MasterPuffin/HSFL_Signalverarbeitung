@@ -22,7 +22,7 @@ t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
 freqVec = 0 : fa/length(tVec) : fa/2; %!
 
-% Für die 3 weiteren Töne neben cos muss ein Add-On installiert werden
+% Für die 3 weiteren Töne neben cos muss die Signal Processcing Toolbox installiert werden
 % um sie hören zu können. Einfach auf Run drücken und die Fehlermeldung
 % lesen, dann genanntes in Matlab installieren.
 
@@ -43,9 +43,11 @@ pauseVec = zeros(1, floor(td / 2 * fa));    % Erzeugt Pause
 signaleVec = [cosVec, pauseVec, rechteckVec, pauseVec, dreieckVec, pauseVec, saegezahnVec, pauseVec, rauschenVec];
 %sound(signaleVec, fa);
 
-aWavFull = audioread('/S_a.wav')';  %!
-aWavCut = aWavFull(115:10170);  %!
-hanVec = aWavCut .* hann(length(aWavCut))'; %!
+wavLang = audioread('/S_a.wav')';  %!
+% figure(9);   
+% plot(wavLang)
+wavKurz = wavLang(119:10171);  %!
+hannVec = wavKurz .* hann(length(wavKurz))'; %!
 
 transCos = funcRdft(cosVec, length(cosVec));  %!
 transRechteck = funcRdft(rechteckVec, length(rechteckVec));  %!
@@ -53,117 +55,116 @@ transDreieck = funcRdft(dreieckVec, length(dreieckVec));  %!
 transSaegezahn = funcRdft(saegezahnVec, length(saegezahnVec));  %!
 transRauschen = funcRdft(rauschenVec, length(rauschenVec));  %!
 
-transAWav = funcRdft(aWavFull, length(aWavFull)); %!
+transWav = funcRdft(wavLang, length(wavLang)); %!
 
+figure(1);
+subplot(5, 1, 1);
+plot(tVec(1:100), cosVec(1:100));               % Ausgabe 100 Werte Cosiuns-Signal im Zeitbereich
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich Cosinus');
 
-figure(1);                                      % Zeichnen in Fenster 1
-subplot(5, 1, 1);                               % Erstellung Subplot 1 von 5
-plot(tVec(1:100), cosVec(1:100));               % Plotte erste 100 Werte Cosiuns-Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich Cosinus');                   % Benennung Grafik
+subplot(5, 1, 2);
+plot(tVec(1:100), rechteckVec(1:100));          % Ausgabe 100 Werte Rechteck-Signal im Zeitbereich
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich Rechteck');
 
-subplot(5, 1, 2);                               % Erstellung Subplot 2 von 5
-plot(tVec(1:100), rechteckVec(1:100));               % Plotte erste 100 Werte Rechteck-Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich Rechteck');                  % Benennung Grafik
+subplot(5, 1, 3);
+plot(tVec(1:100), dreieckVec(1:100));           % Ausgabe 100 Werte Dreieck-Signal im Zeitbereich
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich Dreieck');
 
-subplot(5, 1, 3);                               % Erstellung Subplot 3 von 5
-plot(tVec(1:100), dreieckVec(1:100));               % Plotte erste 100 Werte Dreieck-Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich Dreieck');                   % Benennung Grafik
+subplot(5, 1, 4);
+plot(tVec(1:100), saegezahnVec(1:100));         % Ausgabe 100 Werte Sägezahn-Signal im Zeitbereich
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich Sägezahn');
 
-subplot(5, 1, 4);                               % Erstellung Subplot 4 von 5
-plot(tVec(1:100), saegezahnVec(1:100));               % Plotte erste 100 Werte S�gezahn-Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich S�gezahn');                  % Benennung Grafik
+subplot(5, 1, 5);
+plot(tVec(1:100), rauschenVec(1:100));          % Ausgabe 100 Werte Rauschen-Signal im Zeitbereich
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet                             
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich Rauschen');                  
 
-subplot(5, 1, 5);                               % Erstellung Subplot 5 von 5
-plot(tVec(1:100), rauschenVec(1:100));               % Plotte erste 100 Werte Rauschen-Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse                             
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich Rauschen');                  % Benennung Grafik
+figure(2);
+subplot(5, 1, 1);
+plot(freqVec, transCos);                        % Ausgabe Cosiuns-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet  
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Cosinus');
 
-figure(2);                                      % Zeichnen in Fenster 2
-subplot(5, 1, 1);                               % Erstellung Subplot 1 von 5
-plot(freqVec, transCos);                        % Plotte Cosiuns-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse  
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Cosinus');               % Benennung Grafik
+subplot(5, 1, 2);
+plot(freqVec, transRechteck);                   % Ausgabe Rechteck-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Rechteck');
 
-subplot(5, 1, 2);                               % Erstellung Subplot 2 von 5
-plot(freqVec, transRechteck);                        % Plotte Rechteck-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Rechteck');              % Benennung Grafik
+subplot(5, 1, 3);
+plot(freqVec, transDreieck);                    % Ausgabe Dreieck-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Dreicke');
 
-subplot(5, 1, 3);                               % Erstellung Subplot 3 von 5
-plot(freqVec, transDreieck);                        % Plotte Dreieck-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Dreicke');               % Benennung Grafik
+subplot(5, 1, 4);
+plot(freqVec, transSaegezahn);                  % Ausgabe Sägezahn-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Sägezahn');              
 
-subplot(5, 1, 4);                               % Erstellung Subplot 4 von 5
-plot(freqVec, transSaegezahn);                        % Plotte S�gezahn-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich S�gezahn');              % Benennung Grafik
+subplot(5, 1, 5);
+plot(freqVec, transRauschen);                   % Ausgabe Rausch-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Rauschen');
 
-subplot(5, 1, 5);                               % Erstellung Subplot 5 von 5
-plot(freqVec, transRauschen);                        % Plotte Rausch-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Rauschen');              % Benennung Grafik
+figure(3);
+subplot(4, 1, 1);
+plot(tVec(1:1000), wavLang(1:1000));            % Ausgabe 1000 Werte langes wav A Signal
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich langes A');
 
-figure(3);                                      % Zeichnen in Fenster 3
-subplot(4, 1, 1);                               % Erstellung Subplot 1 von 4
-plot(tVec(1:600), aWavFull(1:600));             % Plotte erste 600 Werte eingelesenes Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich eingelesenes A');            % Benennung Grafik
+subplot(4, 1, 2);
+plot(tVec(1:1000), wavKurz(1:1000));          % Ausgabe 1000 Werte kurzes wav A Signal
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich kurzes A');
 
-subplot(4, 1, 2);                               % Erstellung Subplot 2 von 4
-plot(tVec(1:600), aWavCut(1:600));              % Plotte erste 600 Werte beschnittenes Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich beschnittenes A');           % Benennung Grafik
+subplot(4, 1, 3);
+plot(tVec(1:1000), hannVec(1:1000));            % Ausgabe 1000 Werte gefenstertes Signal
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Zeitbereich gefenstertes A');
 
-subplot(4, 1, 3);                               % Erstellung Subplot 3 von 4
-plot(tVec(1:600), hanVec(1:600));               % Plotte erste 600 Werte gefenstertes Signal im Zeitbereich
-xlabel('Zeit t/s');                             % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Zeitbereich gefenstertes A');            % Benennung Grafik
+subplot(4, 1, 4);
+plot(freqVec(1:length(transWav)), transWav);    % Ausgabe wav A im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich A');
 
-subplot(4, 1, 4);                               % Erstellung Subplot 4 von 4
-plot(freqVec(1:length(transAWav)), transAWav);  % Plotte eingelesenes Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich A');                     % Benennung Grafik
+figure(4);
+subplot(2, 2, 1);
+plot(freqVec, transRechteck);                   % Ausgabe Rechteck-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Rechteck');
 
-figure(4);                                      % Zeichnen in Fenster 3
-subplot(2, 2, 1);                               % Erstellung Subplot 1 von 4
-plot(freqVec, transRechteck);                        % Plotte Rechteck-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Rechteck');              % Benennung Grafik
+subplot(2, 2, 2);
+plot(freqVec, transDreieck);                    % Ausgabe Dreieck-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Dreieck');
 
-subplot(2, 2, 2);                               % Erstellung Subplot 2 von 4
-plot(freqVec, transDreieck);                        % Plotte Dreieck-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich Dreieck');               % Benennung Grafik
+subplot(2, 2, 3);
+plot(freqVec, transSaegezahn);                  % Ausgabe Sägezahn-Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich Sägezahn');
 
-subplot(2, 2, 3);                               % Erstellung Subplot 3 von 4
-plot(freqVec, transSaegezahn);                        % Plotte S�gezahn-Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich S�gezahn');              % Benennung Grafik
-
-subplot(2, 2, 4);                               % Erstellung Subplot 4 von 4
-plot(freqVec(1:length(transAWav)), transAWav);  % Plotte eingelesenes Signal im Frequenzbereich
-xlabel('Frequenz Hz');                          % Benennung X-Achse
-ylabel('Amplitude');                            % Benennung Y-Achse
-title('Frequenzbereich A');                     % Benennung Grafik
+subplot(2, 2, 4);
+plot(freqVec(1:length(transWav)), transWav);    % Ausgabe wav A Signal im Frequenzbereich
+xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
+ylabel('Amplitude');                            % y-Achse wird beschriftet
+title('Frequenzbereich A');
