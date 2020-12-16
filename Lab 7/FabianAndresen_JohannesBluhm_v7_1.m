@@ -34,10 +34,10 @@ saegezahnVec = funcGeneratePeriodic(2, amp, freq, 0, td, fa, 0); %Erzeugt Sägez
 rauschenVec = randn(1, td * fa); % Erzeugt ein Rauschen
 pauseVec = zeros(1, floor(td / 2 * fa));    % Erzeugt Pause
 
-%sound(cosVec, fa);
-%sound(rechteckVec, fa);
-%sound(dreieckVec, fa);
-%sound(saegezahnVec, fa);
+% sound(cosVec, fa); % Klarer Ton
+% sound(rechteckVec, fa); % Vibrierender Ton
+% sound(dreieckVec, fa); % Klarer Ton, ähnlich cosVec
+% sound(saegezahnVec, fa); % Ähnlich wie RechteckVec aber stärkeres Knacken
 %sound(rauschenVec, fa);
 
 signaleVec = [cosVec, pauseVec, rechteckVec, pauseVec, dreieckVec, pauseVec, saegezahnVec, pauseVec, rauschenVec]; % Signale zusammenfügen
