@@ -20,16 +20,16 @@ freq = 1000;  % Frequenz
 
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
-freqVec = 0 : fa/length(tVec) : fa/2; %!
+freqVec = 0 : fa/length(tVec) : fa/2; %Zeitvektor Frequenzausgabe
 
 % Für die 3 weiteren Töne neben cos muss die Signal Processcing Toolbox installiert werden
 % um sie hören zu können. Einfach auf Run drücken und die Fehlermeldung
 % lesen, dann genanntes in Matlab installieren.
 
-cosVec = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0);
-rechteckVec = funcGeneratePeriodic(4, amp, freq, 0, td, fa, 0);
-dreieckVec = funcGeneratePeriodic(3, amp, freq, 0, td, fa, 0);
-saegezahnVec = funcGeneratePeriodic(2, amp, freq, 0, td, fa, 0);
+cosVec = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0); %Erzeugt Cosinus Signal
+rechteckVec = funcGeneratePeriodic(4, amp, freq, 0, td, fa, 0); %Erzeugt Rechteck Signal
+dreieckVec = funcGeneratePeriodic(3, amp, freq, 0, td, fa, 0); %Erzeugt Dreieck Signal
+saegezahnVec = funcGeneratePeriodic(2, amp, freq, 0, td, fa, 0); %Erzeugt Sägezahn Signal
 
 rauschenVec = randn(1, td * fa); % Erzeugt ein Rauschen
 pauseVec = zeros(1, floor(td / 2 * fa));    % Erzeugt Pause
@@ -40,22 +40,21 @@ pauseVec = zeros(1, floor(td / 2 * fa));    % Erzeugt Pause
 %sound(saegezahnVec, fa);
 %sound(rauschenVec, fa);
 
-signaleVec = [cosVec, pauseVec, rechteckVec, pauseVec, dreieckVec, pauseVec, saegezahnVec, pauseVec, rauschenVec];
+signaleVec = [cosVec, pauseVec, rechteckVec, pauseVec, dreieckVec, pauseVec, saegezahnVec, pauseVec, rauschenVec]; % Signale zusammenfügen
 %sound(signaleVec, fa);
 
-wavLang = audioread('/S_a.wav')';  %!
+wavLang = audioread('/S_a.wav')';  % wav A einlesen
 % figure(9);   
 % plot(wavLang)
-wavKurz = wavLang(119:10171);  %!
-hannVec = wavKurz .* hann(length(wavKurz))'; %!
+wavKurz = wavLang(119:10171);  % Stille aus wav kürzen
+hannVec = wavKurz .* hann(length(wavKurz))'; % Hanning / Fensterfunktion
 
-transCos = funcRdft(cosVec, length(cosVec));  %!
-transRechteck = funcRdft(rechteckVec, length(rechteckVec));  %!
-transDreieck = funcRdft(dreieckVec, length(dreieckVec));  %!
-transSaegezahn = funcRdft(saegezahnVec, length(saegezahnVec));  %!
-transRauschen = funcRdft(rauschenVec, length(rauschenVec));  %!
-
-transWav = funcRdft(wavLang, length(wavLang)); %!
+transCos = funcRdft(cosVec, length(cosVec));  % Umwandeln in Frequenzbereich
+transRechteck = funcRdft(rechteckVec, length(rechteckVec));  % Umwandeln in Frequenzbereich
+transDreieck = funcRdft(dreieckVec, length(dreieckVec));  % Umwandeln in Frequenzbereich
+transSaegezahn = funcRdft(saegezahnVec, length(saegezahnVec));  % Umwandeln in Frequenzbereich
+transRauschen = funcRdft(rauschenVec, length(rauschenVec));  % Umwandeln in Frequenzbereich
+transWav = funcRdft(wavLang, length(wavLang)); % Umwandeln in Frequenzbereich
 
 figure(1);
 subplot(5, 1, 1);
@@ -127,7 +126,7 @@ ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich langes A');
 
 subplot(4, 1, 2);
-plot(tVec(1:1000), wavKurz(1:1000));          % Ausgabe 1000 Werte kurzes wav A Signal
+plot(tVec(1:1000), wavKurz(1:1000));            % Ausgabe 1000 Werte kurzes wav A Signal
 xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich kurzes A');
