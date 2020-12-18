@@ -23,6 +23,8 @@ tVec = 0 : t : td - t; % Zeitvektor
 
 prompt = 'Start Nummer: ';
 prompt2 = 'Stopp Nummer: ';
+
+% User wird nach Start und Stopp Nummern gefragt
 start = input(prompt);
 stopp = input(prompt2);
 
