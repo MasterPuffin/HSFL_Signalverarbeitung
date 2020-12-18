@@ -74,25 +74,25 @@ title('Zeitbereich Cosinus');
 
 subplot(5, 1, 2);
 plot(tVec(1:100), rechteckVec(1:100));          % Ausgabe 100 Werte Rechteck-Signal im Zeitbereich
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich Rechteck');
 
 subplot(5, 1, 3);
 plot(tVec(1:100), dreieckVec(1:100));           % Ausgabe 100 Werte Dreieck-Signal im Zeitbereich
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich Dreieck');
 
 subplot(5, 1, 4);
 plot(tVec(1:100), saegezahnVec(1:100));         % Ausgabe 100 Werte Sägezahn-Signal im Zeitbereich
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich Sägezahn');
 
 subplot(5, 1, 5);
 plot(tVec(1:100), rauschenVec(1:100));          % Ausgabe 100 Werte Rauschen-Signal im Zeitbereich
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet                             
+xlabel('Zeit in s');                            % x-Achse wird beschriftet                             
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich Rauschen');                  
 
@@ -130,19 +130,19 @@ title('Frequenzbereich Rauschen');
 figure(3);
 subplot(4, 1, 1);
 plot(tVec(1:1000), wavLang(1:1000));            % Ausgabe 1000 Werte langes wav A Signal
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich langes A');
 
 subplot(4, 1, 2);
 plot(tVec(1:1000), wavKurz(1:1000));            % Ausgabe 1000 Werte kurzes wav A Signal
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich kurzes A');
 
 subplot(4, 1, 3);
 plot(tVec(1:1000), hannVec(1:1000));            % Ausgabe 1000 Werte gefenstertes Signal
-xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
+xlabel('Zeit in s');                            % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich gefenstertes A');
 
