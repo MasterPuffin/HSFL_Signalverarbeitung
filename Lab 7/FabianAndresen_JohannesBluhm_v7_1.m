@@ -56,6 +56,15 @@ transSaegezahn = funcRdft(saegezahnVec, length(saegezahnVec));  % Umwandeln in F
 transRauschen = funcRdft(rauschenVec, length(rauschenVec));  % Umwandeln in Frequenzbereich
 transWav = funcRdft(wavLang, length(wavLang)); % Umwandeln in Frequenzbereich
 
+% Zeitvektor für jede Frequenzausgabe
+
+freqVecCos = 0 : fa/length(cosVec) : fa/2;
+freqVecRechteck = 0 : fa/length(rechteckVec) : fa/2;
+freqVecDreieck = 0 : fa/length(dreieckVec) : fa/2;
+freqVecSaegezahn = 0 : fa/length(saegezahnVec) : fa/2;
+freqVecRauschen = 0 : fa/length(rauschenVec) : fa/2;
+freqWav = 0 : fa/length(wavLang) : fa/2;
+
 figure(1);
 subplot(5, 1, 1);
 plot(tVec(1:100), cosVec(1:100));               % Ausgabe 100 Werte Cosiuns-Signal im Zeitbereich
@@ -89,31 +98,31 @@ title('Zeitbereich Rauschen');
 
 figure(2);
 subplot(5, 1, 1);
-plot(freqVec, transCos);                        % Ausgabe Cosiuns-Signal im Frequenzbereich
+plot(freqVecCos, transCos);                     % Ausgabe Cosiuns-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet  
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Cosinus');
 
 subplot(5, 1, 2);
-plot(freqVec, transRechteck);                   % Ausgabe Rechteck-Signal im Frequenzbereich
+plot(freqVecRechteck, transRechteck);           % Ausgabe Rechteck-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Rechteck');
 
 subplot(5, 1, 3);
-plot(freqVec, transDreieck);                    % Ausgabe Dreieck-Signal im Frequenzbereich
+plot(freqVecDreieck, transDreieck);             % Ausgabe Dreieck-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Dreicke');
 
 subplot(5, 1, 4);
-plot(freqVec, transSaegezahn);                  % Ausgabe Sägezahn-Signal im Frequenzbereich
+plot(freqVecSaegezahn, transSaegezahn);         % Ausgabe Sägezahn-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Sägezahn');              
 
 subplot(5, 1, 5);
-plot(freqVec, transRauschen);                   % Ausgabe Rausch-Signal im Frequenzbereich
+plot(freqVecRauschen, transRauschen);           % Ausgabe Rausch-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Rauschen');
@@ -121,49 +130,49 @@ title('Frequenzbereich Rauschen');
 figure(3);
 subplot(4, 1, 1);
 plot(tVec(1:1000), wavLang(1:1000));            % Ausgabe 1000 Werte langes wav A Signal
-xlabel('Zeit in s');                            % x-Achse wird beschriftet
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich langes A');
 
 subplot(4, 1, 2);
 plot(tVec(1:1000), wavKurz(1:1000));            % Ausgabe 1000 Werte kurzes wav A Signal
-xlabel('Zeit in s');                            % x-Achse wird beschriftet
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich kurzes A');
 
 subplot(4, 1, 3);
 plot(tVec(1:1000), hannVec(1:1000));            % Ausgabe 1000 Werte gefenstertes Signal
-xlabel('Zeit in s');                            % x-Achse wird beschriftet
+xlabel('Zeit in Samples');                      % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Zeitbereich gefenstertes A');
 
 subplot(4, 1, 4);
-plot(freqVec(1:length(transWav)), transWav);    % Ausgabe wav A im Frequenzbereich
+plot(freqWav(1:length(transWav)), transWav);    % Ausgabe wav A im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich A');
 
 figure(4);
 subplot(2, 2, 1);
-plot(freqVec, transRechteck);                   % Ausgabe Rechteck-Signal im Frequenzbereich
+plot(freqVecRechteck, transRechteck);           % Ausgabe Rechteck-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Rechteck');
 
 subplot(2, 2, 2);
-plot(freqVec, transDreieck);                    % Ausgabe Dreieck-Signal im Frequenzbereich
+plot(freqVecDreieck, transDreieck);             % Ausgabe Dreieck-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Dreieck');
 
 subplot(2, 2, 3);
-plot(freqVec, transSaegezahn);                  % Ausgabe Sägezahn-Signal im Frequenzbereich
+plot(freqVecSaegezahn, transSaegezahn);         % Ausgabe Sägezahn-Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich Sägezahn');
 
 subplot(2, 2, 4);
-plot(freqVec(1:length(transWav)), transWav);    % Ausgabe wav A Signal im Frequenzbereich
+plot(freqWav(1:length(transWav)), transWav);    % Ausgabe wav A Signal im Frequenzbereich
 xlabel('Freuqenz in Hz');                       % x-Achse wird beschriftet
 ylabel('Amplitude');                            % y-Achse wird beschriftet
 title('Frequenzbereich A');
