@@ -20,6 +20,8 @@ freq = 1000;  % Frequenz
 
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
+recVec = zeros(1, td * fa); % Vorbereiteter Vector
+
 
 prompt = 'Start Nummer: ';
 prompt2 = 'Stopp Nummer: ';
@@ -27,6 +29,12 @@ prompt2 = 'Stopp Nummer: ';
 % User wird nach Start und Stopp Nummern gefragt
 start = input(prompt);
 stopp = input(prompt2);
+
+if start > 1 || stopp > 1
+    disp('Start und Stop müssen < 1 sein');
+    return;
+end    
+   
 
 % Wenn start größer als stopp dann wird getauscht
 if start > stopp
@@ -54,3 +62,28 @@ end
 % Zum testen des userinputs
 %disp(start)
 %disp(stopp)
+
+ausschnittVec = 0 : 1 : stopp * 1000;             % Ausschnittvektor bestimmen
+
+recVec(floor(start * fa) + 1:floor(stopp * fa)) = ones(1, floor(stopp * fa - start * fa));    % Vektor mit Einsen füllen
+
+[freqVec, phaVec] = funcRdft(recVec, length(recVec));       % Transformieren mittels funcRdft
+
+figure(1);
+subplot(3, 1, 1);
+plot(tVec, recVec);                                         % Ausgabe Signal im Zeitbereich
+xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title('Rechteck im Zeitbereich');
+
+subplot(3, 1, 2);
+plot(freqVec);                                              % Ausgabe Signal im Frequenzbereich
+xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title('Rechteck im Frequenzbereich');
+
+subplot(3, 1, 3);
+plot(ausschnittVec, freqVec(1:length(ausschnittVec)));      % Ausgabe erste X Werte
+xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title(sprintf('Rechteck im Frequenzbereich bis zu %f', round(stopp * 1000, 0)));
