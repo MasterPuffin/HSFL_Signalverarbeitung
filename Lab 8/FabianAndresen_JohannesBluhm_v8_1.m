@@ -65,7 +65,7 @@ end
 
 ausschnittVec = 0 : 1 : stopp * 1000;             % Ausschnittvektor bestimmen
 
-recVec(floor(start * fa) + 1:floor(stopp * fa)) = ones(1, floor(stopp * fa - start * fa));    % Vektor mit Einsen füllen
+recVec (floor(start*fa) : floor(stopp*fa)) = ones;    % Vektor mit Einsen füllen
 
 [freqVec, phaVec] = funcRdft(recVec, length(recVec));       % Transformieren mittels funcRdft
 
@@ -77,7 +77,7 @@ ylabel('Amplitude');                                        % y-Achse wird besch
 title('Rechteck im Zeitbereich');
 
 subplot(3, 1, 2);
-plot(freqVec);                                              % Ausgabe Signal im Frequenzbereich
+func_fDarstellung(freqVec, fa, 20);                         % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich');
