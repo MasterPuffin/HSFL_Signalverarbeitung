@@ -63,7 +63,7 @@ end
 %disp(start)
 %disp(stopp)
 
-ausschnittVec = 0 : 1 : stopp * 1000;             % Ausschnittvektor bestimmen
+ausschnittVec = 0 : 1 : stopp * 100;             % Ausschnittvektor bestimmen
 
 recVec (floor(start*fa) : floor(stopp*fa)) = ones;    % Vektor mit Einsen füllen
 
@@ -77,7 +77,7 @@ ylabel('Amplitude');                                        % y-Achse wird besch
 title('Rechteck im Zeitbereich');
 
 subplot(3, 1, 2);
-func_fDarstellung(freqVec, fa, 20);                         % Ausgabe Signal im Frequenzbereich
+plot(freqVec(1:floor(fa/2)));                               % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich');
@@ -86,4 +86,4 @@ subplot(3, 1, 3);
 plot(ausschnittVec, freqVec(1:length(ausschnittVec)));      % Ausgabe erste X Werte
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
-title(sprintf('Rechteck im Frequenzbereich bis zu %f', round(stopp * 1000, 0)));
+title(sprintf('Rechteck im Frequenzbereich bis zu %f', round(stopp * 100, 0)));
