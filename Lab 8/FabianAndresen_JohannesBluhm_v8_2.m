@@ -51,10 +51,10 @@ elseif 0 > stopp
     stopp = 0;
 end
 
-% Wenn start kleiner als 0 dann start = 0, wenn start größer als 1 dann
+% Wenn start kleiner als oder gleich 0 dann start = 0.1, wenn start größer als 1 dann
 % start = 1
-if 0 > start
-    start = 0;
+if 0 >= start
+    start = 0.1;
 elseif 1 < start
     start = 1;
 end
