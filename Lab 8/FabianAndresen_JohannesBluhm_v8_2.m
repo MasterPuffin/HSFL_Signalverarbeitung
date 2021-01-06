@@ -32,7 +32,6 @@ stopp = input(prompt2);
 
 if start > 1 || stopp > 1
     disp('Start und Stop müssen < 1 sein');
-    return;
 end    
    
 
