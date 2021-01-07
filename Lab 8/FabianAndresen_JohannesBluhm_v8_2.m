@@ -30,10 +30,22 @@ prompt2 = 'Stopp Nummer: ';
 start = input(prompt);
 stopp = input(prompt2);
 
-if start > 1 || stopp > 1
-    disp('Start und Stop müssen < 1 sein');
-end    
-   
+
+% Wenn stopp größer als 1 dann stopp = 1, wenn stopp kleiner als 0 dann
+% stopp = 0
+if stopp > 1
+    stopp = 1;
+elseif stopp <= 0
+    stopp = t;
+end
+
+% Wenn start kleiner als oder gleich 0 dann start = t, wenn start größer als 1 dann
+% start = 1
+if start <= 0
+    start = t;
+elseif start > 1
+    start = 1;
+end
 
 % Wenn start größer als stopp dann wird getauscht
 if start > stopp
@@ -42,25 +54,10 @@ if start > stopp
     stopp = temp;
 end
 
-% Wenn stopp größer als 1 dann stopp = 1, wenn stopp kleiner als 0 dann
-% stopp = 1
-if 1 < stopp
-    stopp = 1;
-elseif 0 > stopp
-    stopp = 0;
-end
-
-% Wenn start kleiner als oder gleich 0 dann start = 0, wenn start größer als 1 dann
-% start = 1
-if 0 >= start
-    start = t;
-elseif 1 < start
-    start = 1;
-end
 
 % Zum testen des userinputs
-%disp(start)
-%disp(stopp)
+disp(start)
+disp(stopp)
 
 ausschnittVec = 0 : 1 : stopp * 100;             % Ausschnittvektor bestimmen
 
