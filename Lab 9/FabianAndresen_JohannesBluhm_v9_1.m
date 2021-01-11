@@ -41,20 +41,24 @@ title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');
 freqVecR = funcRidft(freqVec, phaVec, length(recVec));      % Rücktransformieren mittels funcRidft
 
 subplot(3, 1, 3);
-plot(tVec, freqVecR);                                         % Ausgabe Signal im Zeitbereich
+plot(tVec, freqVecR);                                       % Ausgabe Signal im Zeitbereich
 xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
-title('Rechteck im Zeitbereich');
+title('Rücktransdormiertes Rechteck im Zeitbereich');
 
-cosVec1 = funcGeneratePeriodic(1, amp, phaVec(2), 0, td, fa, 0);
-cosVec2 = funcGeneratePeriodic(1, amp, phaVec(3), 0, td, fa, 0);
-cosVec3 = funcGeneratePeriodic(1, amp, phaVec(4), 0, td, fa, 0);
-cosVec4 = funcGeneratePeriodic(1, amp, phaVec(5), 0, td, fa, 0);
-cosVec5 = funcGeneratePeriodic(1, amp, phaVec(6), 0, td, fa, 0);
-cosVec = cosVec1 + cosVec2 + cosVec3 + cosVec4 + cosVec5;
-
-figure(2);
-plot(tVec, cosVec, 'b', tVec, cosVec1, 'r', tVec, cosVec2, 'r', tVec, cosVec3, 'r', tVec, cosVec4, 'r', tVec, cosVec5, 'r');                                         % Ausgabe Signal im Zeitbereich
+figure(2);                                                 
+hold on;                                                    % Plot Ausgabe pausieren
+recVecR = zeros(1, length(recVec));                         % Vector vorbereiten
+anzahlWellen = 500;                                         
+for i = 1 : anzahlWellen                                         
+    cosVec = funcGeneratePeriodic(1, freqVec(i+1), i, phaVec(i+1), td, fa, 0); % Cosinus Signal erzeugen
+    recVecR = recVecR + cosVec;                             % Vektoren addieren
+    plot(cosVec, 'r');                                      % Vektor ausgeben
+end                                                       
+plot(recVecR, 'b');                                         % Regenerierten Vektor ausgeben
+                                          
+text(5000, 0.7, "Anzahl der Teilwellen: " + anzahlWellen);  % Anzahl der Teilwellen
+hold off;                                                   % Plot ausgeben
 xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
-title('Rechteck im Zeitbereich');
+title('Rechteck zusammengesetzt aus Teilwellen');
