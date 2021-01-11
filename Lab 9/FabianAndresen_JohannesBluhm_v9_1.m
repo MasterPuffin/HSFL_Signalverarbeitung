@@ -38,7 +38,7 @@ xlabel('Frequenz Hz');                                      % x-Achse wird besch
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');
 
-freqVecR = funcRidft(freqVec, phaVec)      % Rücktransformieren mittels funcRidft
+freqVecR = funcRidft(freqVec, phaVec, length(recVec));      % Rücktransformieren mittels funcRidft
 
 subplot(3, 1, 3);
 plot(tVec, freqVecR);                                         % Ausgabe Signal im Zeitbereich
@@ -46,4 +46,15 @@ xlabel('Zeit t/s');                                         % x-Achse wird besch
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Zeitbereich');
 
-cosVec = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0);
+cosVec1 = funcGeneratePeriodic(1, amp, phaVec(2), 0, td, fa, 0);
+cosVec2 = funcGeneratePeriodic(1, amp, phaVec(3), 0, td, fa, 0);
+cosVec3 = funcGeneratePeriodic(1, amp, phaVec(4), 0, td, fa, 0);
+cosVec4 = funcGeneratePeriodic(1, amp, phaVec(5), 0, td, fa, 0);
+cosVec5 = funcGeneratePeriodic(1, amp, phaVec(6), 0, td, fa, 0);
+cosVec = cosVec1 + cosVec2 + cosVec3 + cosVec4 + cosVec5;
+
+figure(2);
+plot(tVec, cosVec, 'b', tVec, cosVec1, 'r', tVec, cosVec2, 'r', tVec, cosVec3, 'r', tVec, cosVec4, 'r', tVec, cosVec5, 'r');                                         % Ausgabe Signal im Zeitbereich
+xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title('Rechteck im Zeitbereich');
