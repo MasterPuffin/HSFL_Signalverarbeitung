@@ -26,14 +26,24 @@ recVec (floor(0.1*fa) : floor(0.3*fa)) = ones;              % Vektor mit Einsen 
 [freqVec, phaVec] = funcRdft(recVec, length(recVec));       % Transformieren mittels funcRdft
 
 figure(1);
-subplot(2, 1, 1);
+subplot(3, 1, 1);
 plot(tVec, recVec);                                         % Ausgabe Signal im Zeitbereich
 xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Zeitbereich');
 
-subplot(2, 1, 2);
+subplot(3, 1, 2);
 plot(freqVec(1:20));                                        % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');
+
+freqVecR = funcRidft(freqVec, phaVec)      % Rücktransformieren mittels funcRidft
+
+subplot(3, 1, 3);
+plot(tVec, freqVecR);                                         % Ausgabe Signal im Zeitbereich
+xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title('Rechteck im Zeitbereich');
+
+cosVec = funcGeneratePeriodic(1, amp, freq, 0, td, fa, 0);
