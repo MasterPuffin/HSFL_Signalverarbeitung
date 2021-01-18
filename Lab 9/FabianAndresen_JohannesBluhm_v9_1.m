@@ -33,7 +33,7 @@ ylabel('Amplitude');                                        % y-Achse wird besch
 title('Rechteck im Zeitbereich');
 
 subplot(3, 1, 2);
-plot(freqVec(1:20));                                        % Ausgabe Signal im Frequenzbereich
+plot(tVec(1:21), freqVec(1:21));                            % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');
@@ -53,9 +53,9 @@ anzahlWellen = 500;
 for i = 1 : anzahlWellen                                         
     cosVec = funcGeneratePeriodic(1, freqVec(i+1), i, phaVec(i+1), td, fa, 0); % Cosinus Signal erzeugen
     recVecR = recVecR + cosVec;                             % Vektoren addieren
-    plot(cosVec, 'r');                                      % Vektor ausgeben
+    plot(tVec, cosVec, 'r');                                      % Vektor ausgeben
 end                                                       
-plot(recVecR, 'b');                                         % Regenerierten Vektor ausgeben
+plot(tVec, recVecR, 'b');                                         % Regenerierten Vektor ausgeben
                                           
 text(5000, 0.7, "Anzahl der Teilwellen: " + anzahlWellen);  % Anzahl der Teilwellen
 hold off;                                                   % Plot ausgeben
