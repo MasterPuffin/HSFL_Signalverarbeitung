@@ -33,7 +33,7 @@ ylabel('Amplitude');                                        % y-Achse wird besch
 title('Rechteck im Zeitbereich');
 
 subplot(3, 1, 2);
-plot(tVec(1:21), freqVec(1:21));                            % Ausgabe Signal im Frequenzbereich
+plot(0:0.1:2, freqVec(1:21));                            % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');
@@ -57,7 +57,7 @@ for i = 1 : anzahlWellen
 end                                                       
 plot(tVec, recVecR, 'b');                                         % Regenerierten Vektor ausgeben
                                           
-text(5000, 0.7, "Anzahl der Teilwellen: " + anzahlWellen);  % Anzahl der Teilwellen
+text(0.5, 0.7, "Anzahl der Teilwellen: " + anzahlWellen);  % Anzahl der Teilwellen
 hold off;                                                   % Plot ausgeben
 xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
