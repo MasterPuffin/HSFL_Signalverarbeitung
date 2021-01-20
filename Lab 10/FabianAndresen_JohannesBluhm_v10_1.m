@@ -28,16 +28,22 @@ cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec - pi/2); % Sinus 2
 
 cosVec = cosVec1 + cosVec2; % Vektoren addieren
 
-fr1 = (freq1+100)/(fa/2); % freq1 vorbereiten für fir1 (+100 damit er weniger von der unteren Frequenz filtert)
-fr2 = freq2/(fa/2);       % freq2 vorbereiten für fir1
+% --- 2.1 --- %
+
+fr1 = (freq1+100)/(fa/2);         % Grenzfrequenz 1 (+100 damit er weniger von der unteren Frequenz filtert)
+fr2 = freq2/(fa/2);               % Grenzfrequenz 2
 
 lowpass = fir1(96,[fr1],'low');   % fir1 wird benutzt
 final = filter(lowpass,a,cosVec); % Filter wird auf cosVec angewandt
 
-subplot(3,1,1)
-func_fDarstellung(cosVec, fa, 2000);
+subplot(3,1,1)                    % Vor dem Filter
+%func_fDarstellung(cosVec, fa, 2000);
 %sound(cosVec);
 
-subplot(3,1,2)
-func_fDarstellung(final, fa, 2000);
+subplot(3,1,2)                    % Nach dem Filter
+%func_fDarstellung(final, fa, 2000);
 %sound(final);
+
+subplot(3,1,3)                    % Hilft zum erkennen des Filters an sich
+%func_fDarstellung(lowpass, fa, 2000);
+title('Grenzfrequenz wird visualisiert');
