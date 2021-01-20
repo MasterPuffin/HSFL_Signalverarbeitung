@@ -47,3 +47,31 @@ subplot(3,1,2)                    % Nach dem Filter
 subplot(3,1,3)                    % Hilft zum erkennen des Filters an sich
 %func_fDarstellung(lowpass, fa, 2000);
 title('Grenzfrequenz wird visualisiert');
+
+% --- 2.2 --- %
+
+% Beim verändern der Grenzferquenz bestimmt man ab welcher Frequenz der
+% lowpass/highpass Filter angewandt wird.
+
+% Beim verändern der Anzahl der Koeffizienten bestimmt man wie schnell
+% diese Kurve abflacht. Sprich wie harsch der Filter sich auswirkt.
+
+wav = audioread('/S_dlma.wav')';    % file einlesen
+fr3 = 800/(fa/2);                   % Grenzfrequenz 3
+lowpass2 = fir1(442,[fr3],'low');   % fir1 wird benutzt
+finalWav = filter(lowpass2,a,wav);  % Filter wird auf wav angewandt
+
+subplot(4,1,1)                      % Vor dem Filter
+func_fDarstellung(wav, fa, 2000);
+subplot(4,1,2)
+plot(wav)
+title('Wave File ohne Filter')
+%sound(wav);
+
+subplot(4,1,3)                      % Nach dem Filter
+func_fDarstellung(finalWav, fa, 2000);
+title('Grenzfrequenz = 800; Koeffizienten = 442');
+subplot(4,1,4)
+plot(finalWav)
+title('Wave File mit Filter; Grenzfrequenz = 800; Koeffizienten = 442');
+%sound(finalWav);
