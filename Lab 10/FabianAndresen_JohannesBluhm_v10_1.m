@@ -28,17 +28,16 @@ cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec - pi/2); % Sinus 2
 
 cosVec = cosVec1 + cosVec2; % Vektoren addieren
 
-fr1 = freq1/(fa/2);
-fr2 = freq2/(fa/2);
+fr1 = (freq1+100)/(fa/2); % freq1 vorbereiten für fir1 (+100 damit er weniger von der unteren Frequenz filtert)
+fr2 = freq2/(fa/2);       % freq2 vorbereiten für fir1
 
-lowpass = fir1(96,[fr1],'low');
-freqz(lowpass,a);
-final = filter(lowpass,a,cosVec);
+lowpass = fir1(96,[fr1],'low');   % fir1 wird benutzt
+final = filter(lowpass,a,cosVec); % Filter wird auf cosVec angewandt
 
-subplot(2,1,1)
+subplot(3,1,1)
 func_fDarstellung(cosVec, fa, 2000);
 %sound(cosVec);
 
-subplot(2,1,2)
+subplot(3,1,2)
 func_fDarstellung(final, fa, 2000);
 %sound(final);
