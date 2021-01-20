@@ -13,11 +13,18 @@ clear;     % Variablen bereinigen
 close all; % Alles schließen
 
 % Parameter
-fa = 11025;  % Abtastrate
-td = 1;    % Signaldauer
-amp = 1;     % Amplitude (Lautstärke)
-freq = 1000;  % Frequenz
+fa = 11025;   % Abtastrate
+td = 0.09;    % Signaldauer
+a = 1;        % Amplitude (Lautstärke)
 
+freq1 = 852;  % Frequenz 1
+freq2 = 1209; % Frequenz 2
+
+% Berechnung
 t = 1/fa;              % Abtastperiode
 tVec = 0 : t : td - t; % Zeitvektor
-recVec = zeros(1, td * fa); % Vorbereiteter Vector
+cosVec1 = a * cos(2 * pi * freq1 * tVec - pi/2); % Sinus 1
+cosVec2 = a * 1.25 * cos(2 * pi * freq2 * tVec - pi/2); % Sinus 2
+
+pauseVec = zeros(1 , length(tVec)); % Pausenvektor
+cosVec = cosVec1 + cosVec2; % Vektoren addieren
