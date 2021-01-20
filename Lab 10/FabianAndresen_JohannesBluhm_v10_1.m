@@ -6,7 +6,7 @@
 %
 % Analysieren eines einfachen digitalen Systems mit Hilfe von MatLab, Untersuchen eines Sprachfiles
 %
-% Abgabe Montag, 21.01.2021
+% Abgabe Donnerstag, 21.01.2021
 
 clc;       % Kommandofenster bereinigen
 clear;     % Variablen bereinigen
