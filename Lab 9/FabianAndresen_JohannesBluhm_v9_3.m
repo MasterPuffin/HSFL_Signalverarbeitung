@@ -33,7 +33,7 @@ ylabel('Amplitude');                                        % y-Achse wird besch
 title('Rechteck im Zeitbereich');
 
 subplot(3, 1, 2);
-plot(0:0.1:2, freqVec(1:21));                            % Ausgabe Signal im Frequenzbereich
+plot(0:1:20, freqVec(1:21));                            % Ausgabe Signal im Frequenzbereich
 xlabel('Frequenz Hz');                                      % x-Achse wird beschriftet
 ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Rechteck im Frequenzbereich mit einer oberen Frequenz von 20');

@@ -36,6 +36,7 @@ fr2 = freq2/(fa/2);               % Grenzfrequenz 2
 lowpass = fir1(96,[fr1],'low');   % fir1 wird benutzt
 final = filter(lowpass,a,cosVec); % Filter wird auf cosVec angewandt
 
+figure(1);
 subplot(3,1,1)                    % Vor dem Filter
 %func_fDarstellung(cosVec, fa, 2000);
 %sound(cosVec);
@@ -46,7 +47,7 @@ subplot(3,1,2)                    % Nach dem Filter
 
 subplot(3,1,3)                    % Hilft zum erkennen des Filters an sich
 %func_fDarstellung(lowpass, fa, 2000);
-title('Grenzfrequenz wird visualisiert');
+%title('Grenzfrequenz wird visualisiert');
 
 % --- 2.2 --- %
 
@@ -61,17 +62,25 @@ fr3 = 800/(fa/2);                   % Grenzfrequenz 3
 lowpass2 = fir1(442,[fr3],'low');   % fir1 wird benutzt
 finalWav = filter(lowpass2,a,wav);  % Filter wird auf wav angewandt
 
-subplot(4,1,1)                      % Vor dem Filter
-func_fDarstellung(wav, fa, 2000);
-subplot(4,1,2)
-plot(wav)
-title('Wave File ohne Filter')
-%sound(wav);
+figure(2);
+subplot(4, 1, 1);                   % Nach dem Filter
+func_fDarstellung(wav, fa, 2000);   % Ausgabe Sprachsignal im Frequenzbereich vor Filter
+title('Wave File ohne Filter im Frequenzbereich')
 
-subplot(4,1,3)                      % Nach dem Filter
-func_fDarstellung(finalWav, fa, 2000);
+subplot(4, 1, 2);                   % Nach dem Filter
+func_fDarstellung(finalWav, fa, 2000);   % Ausgabe Sprachsignal im Frequenzbereich nach Filter
+%TODO: Geben sie beim gefilterten Sprachsignal die von ihnen gewählte Grenzfrequenz und die Anzahl der Koeffizienten mit im Titel aus. 
 title('Grenzfrequenz = 800; Koeffizienten = 442');
-subplot(4,1,4)
-plot(finalWav)
+
+subplot(4, 1, 3);
+plot(wav);                                       % Ausgabe Sprachsignal im Zeitbereich vor Filter
+xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
+title('Wave File ohne Filter im Zeitbereich')
+
+subplot(4, 1, 4);
+plot(finalWav);                                       % Ausgabe Sprachsignal im Zeitbereich nach Filter
+xlabel('Zeit t/s');                                         % x-Achse wird beschriftet
+ylabel('Amplitude');                                        % y-Achse wird beschriftet
 title('Wave File mit Filter; Grenzfrequenz = 800; Koeffizienten = 442');
 %sound(finalWav);
