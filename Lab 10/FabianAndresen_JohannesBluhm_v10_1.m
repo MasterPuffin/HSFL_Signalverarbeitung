@@ -73,16 +73,17 @@ subplot(4, 1, 2);                       % Nach dem Filter
 func_fDarstellung(finalWav, fa, 2000);  % Ausgabe Sprachsignal im Frequenzbereich nach Filter
 title('Grenzfrequenz = 800; Koeffizienten = 442');
 
+td2 = length(wav) / fa;                  % Neue Signaldauer
+tVec = 0 : t : td2 - t;                  % Neuer Zeitvektor
+
 subplot(4, 1, 3);
-plot(wav);                               % Ausgabe Sprachsignal im Zeitbereich vor Filter
-%TODO: Zeitvektor
+plot(tVec, wav);                         % Ausgabe Sprachsignal im Zeitbereich vor Filter
 xlabel('Zeit s');                        % x-Achse wird beschriftet
 ylabel('Amplitude');                     % y-Achse wird beschriftet
 title('Wave File ohne Filter im Zeitbereich')
 
 subplot(4, 1, 4);
-plot(finalWav);                          % Ausgabe Sprachsignal im Zeitbereich nach Filter
-%TODO: Zeitvektor
+plot(tVec, finalWav);                    % Ausgabe Sprachsignal im Zeitbereich nach Filter
 xlabel('Zeit s');                        % x-Achse wird beschriftet
 ylabel('Amplitude');                     % y-Achse wird beschriftet
 title('Wave File mit Filter; Grenzfrequenz = 800; Koeffizienten = 442');
