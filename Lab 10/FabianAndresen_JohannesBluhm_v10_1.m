@@ -30,10 +30,10 @@ cosVec = cosVec1 + cosVec2; % Vektoren addieren
 
 % --- 2.1 --- %
 
-fr1 = (freq1+100)/(fa/2);               % Grenzfrequenz 1 (+100 damit er weniger von der unteren Frequenz filtert)
-fr2 = freq2/(fa/2);                     % Grenzfrequenz 2
+fr1 = (1050)/(fa/2);                    % Grenzfrequenz 1 (1050)
+fr2 = freq2/(fa/2);                     % Grenzfrequenz 2 (1209; wird aber nicht verwendet im code)
 
-lowpass = fir1(96,[fr1],'low');         % fir1 wird benutzt
+lowpass = fir1(116,[fr1],'low');        % fir1 wird benutzt
 final = filter(lowpass,a,cosVec);       % Filter wird auf cosVec angewandt
 
 figure(1);
@@ -44,7 +44,7 @@ title('Ton vor dem Filter');
 
 subplot(3,1,2)                    
 func_fDarstellung(final, fa, 2000);     % Nach dem Filter
-title('Ton nach dem Filter Grenzfrequenz = 952; Koeffizienten = 96');
+title('Ton nach dem Filter; Grenzfrequenz = 1050; Koeffizienten = 116');
 %sound(final, fa);
 
 subplot(3,1,3)                    
