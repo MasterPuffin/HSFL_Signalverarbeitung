@@ -44,7 +44,7 @@ title('Ton vor dem Filter');
 
 subplot(3,1,2)                    
 func_fDarstellung(final, fa, 2000);     % Nach dem Filter
-title('Ton nach dem Filter');
+title('Ton nach dem Filter Grenzfrequenz = 952; Koeffizienten = 96');
 %sound(final, fa);
 
 subplot(3,1,3)                    
