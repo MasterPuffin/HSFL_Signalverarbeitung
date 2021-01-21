@@ -40,12 +40,12 @@ figure(1);
 subplot(3,1,1)                          
 func_fDarstellung(cosVec, fa, 2000);    % Vor dem Filter
 title('Ton vor dem Filter');
-%sound(cosVec);
+%sound(cosVec, fa);
 
 subplot(3,1,2)                    
 func_fDarstellung(final, fa, 2000);     % Nach dem Filter
 title('Ton nach dem Filter');
-%sound(final);
+%sound(final, fa);
 
 subplot(3,1,3)                    
 func_fDarstellung(lowpass, fa, 2000);   % Hilft zum erkennen des Filters an sich
@@ -87,4 +87,4 @@ plot(tVec, finalWav);                    % Ausgabe Sprachsignal im Zeitbereich n
 xlabel('Zeit s');                        % x-Achse wird beschriftet
 ylabel('Amplitude');                     % y-Achse wird beschriftet
 title('Wave File mit Filter; Grenzfrequenz = 800; Koeffizienten = 442');
-%sound(finalWav);
+sound(finalWav, fa);
